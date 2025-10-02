@@ -1,17 +1,60 @@
 <!DOCTYPE html>
-    <html>
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Score</title>
-        </head>
-        <body>
-            <h1>Sinu skoor:</h1>
-            <p>Tehtud seeriad:
-            <br />
-            Tehtud kordused:
-            <br />
-            Skoor kokku:
-            </p>
-        </body>
+<html lang = "et">
+    <head>
+        <meta charset="UTF-8">
+        <title>Gym</title>
+        <style>
+            h2 {
+                color: rgba(255, 255, 255, 0.931);
+                font-size: 40px;
+            }
+
+            .main {
+                 width: 80%;
+                 max-width: 800px;
+                 margin: 0 auto;
+                 padding-top: 20px;
+                 background-color: rgb(46, 44, 44);
+            }
+
+            .info {
+                margin-left: 10%;
+                display: flex;
+                align-items: center;
+                gap: 14%;
+                width: 90%;
+            }
+
+            .Set {
+                margin-left: 11%;
+                width: 80%;
+                display: flex;
+                align-items: center;
+                gap: 15%;
+            }
+
+        </style>
+    </head>
+    <body>
+        <form method ="POST" action = "/">
+
+        <div class="main">
+            <div class="info">
+                <h2>Sinu skoor!</h2>
+            </div>
+            <div class="Set">    
+                <h2>Tehtud seeriad: </h2>
+            </div>
+            <div class="Set">    
+                <h2>Tehtud kordused: </h2>
+            </div>
+        </div>
+        <div style="text-align:center;">
+            <p>Skoor kokku: </p>
+        </div>
+        </form>
+
+
+
+    </body>
 </html>
