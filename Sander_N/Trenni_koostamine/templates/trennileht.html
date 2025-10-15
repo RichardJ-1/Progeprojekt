@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang = "et">
+    <head>
+        <meta charset="UTF-8">
+        <title>Gym</title>
+        <style>
+            h2 {
+                color: rgba(255, 255, 255, 0.931);
+                font-size: 40px;
+            }
+
+            .main {
+                 width: 80%;
+                 max-width: 800px;
+                 margin: 0 auto;
+                 margin-top: 20px;
+                 padding-top: 20px;
+                 background-color: rgb(46, 44, 44);
+                 border-radius: 10px;
+            }
+
+            .harjutus_nimi {
+                margin-top: 10px;
+                margin-left: 10%;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .info {
+                margin-left: 10%;
+                display: flex;
+                align-items: center;
+                gap: 14%;
+                width: 90%;
+            }
+
+            .Set {
+                margin-left: 11%;
+                width: 80%;
+                display: flex;
+                align-items: center;
+                gap: 15%;
+            }
+
+            .H_input {
+                display: flex;
+                height: 40px;
+                width: 90%;
+            }
+
+            .kaal_input{
+                height: 30px;
+                width: 80px;
+            }
+
+            .kor_input{
+                height: 30px;
+                width: 80px;
+            }
+
+            .lis_set {
+                margin-left: 10%;
+                width: 80%;
+                margin-bottom: 20px;
+                height: 40px;
+            }
+
+            .lisa_harjutus{
+                margin-top: 10px;
+                width: 80%;
+                max-width: 800px;
+                align-items: center;
+                height: 40px;
+            }
+
+            .stop{
+                color: #d90c0c;
+                height: 40px;
+                width: 60%;
+                max-width: 400px;
+            }
+
+            .stop_div{
+                margin-top: 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <form method ="POST" action = "/">
+
+        <div class="main">
+            <div class="harjutus_nimi">
+                    <input  type = "text" class="H_input" name = "harjutuse_nimi" placeholder="Sisesta harjutuse nimi">
+            </div>
+            <div class="info">
+                <h2>Set</h2> <h2>kg </h2> <h2>Reps</h2>
+            </div>
+            <div class="Set">    
+                <h2>1</h2>
+                <div>
+                    <input  type = "text" class="kaal_input" name = "kaal">
+                </div>
+                <div>
+                    <input  type = "text" class="kor_input" name = "kordused">
+                </div>
+            </div>
+                <button type="button" class="lis_set" onclick="addSet(this)"  > + Lisa Set </button>
+        </div>
+        <div style="text-align:center;">
+            <button type="button" class="lisa_harjutus"  onclick="addExercise()"> + Lisa Harhutus</button>
+        </div>
+        <div style="text-align:center;" class="stop_div">
+            <button type="button" class="stop" > STOP </button>
+        </div>
+        </form>
+
+        <script>
+            let setCount = 1; // harjutuse setide loendur
+            let exerciseCount = 1; // harjutuste loendur
+
+            // Lisa uus Set aktiivsele harjutusele
+            function addSet(btn) {
+                const mainDiv = btn.closest('.main'); 
+                let setDivs = mainDiv.querySelectorAll('.Set');
+                let setNumber = setDivs.length + 1;
+
+                const setDiv = document.createElement('div');
+                setDiv.className = 'Set';
+
+                // järjekorranumber
+                const number = document.createElement('h2');
+                number.textContent = setNumber;
+                setDiv.appendChild(number);
+
+                // kaal sisend
+                const kaalDiv = document.createElement('div');
+                const kaalInput = document.createElement('input');
+                kaalInput.type = 'text';
+                kaalInput.className = 'kaal_input';
+                kaalInput.name = 'kaal'; 
+                kaalDiv.appendChild(kaalInput);
+                setDiv.appendChild(kaalDiv);
+
+                // kordused sisend
+                const kordDiv = document.createElement('div');
+                const kordInput = document.createElement('input');
+                kordInput.type = 'text';
+                kordInput.className = 'kor_input';
+                kordInput.name = 'kordused'; 
+                kordDiv.appendChild(kordInput);
+                setDiv.appendChild(kordDiv);
+
+                // lisa enne "+ Lisa Set" nuppu
+                const button = mainDiv.querySelector('.lis_set');
+                mainDiv.insertBefore(setDiv, button);
+            }
+
+            // Lisa uus Harjutus
+            function addExercise() {
+                exerciseCount++;
+
+                const form = document.querySelector('form');
+
+                // loo harjutuse plokk
+                const mainDiv = document.createElement('div');
+                mainDiv.className = 'main';
+
+                // harjutuse nimi
+                const nameDiv = document.createElement('div');
+                nameDiv.className = 'harjutus_nimi';
+                const nameInput = document.createElement('input');
+                nameInput.type = 'text';
+                nameInput.className = 'H_input';
+                nameInput.name = 'harjutuse_nimi'; 
+                nameInput.placeholder = 'Sisesta harjutuse nimi';
+                nameDiv.appendChild(nameInput);
+                mainDiv.appendChild(nameDiv);
+
+                // info rida (kaal ja kordused)
+                const infoDiv = document.createElement('div');
+                infoDiv.className = 'info';
+                infoDiv.innerHTML = '<h2>Set</h2> <h2>kg </h2> <h2>Reps</h2>';
+                mainDiv.appendChild(infoDiv);
+
+                // esimene Set
+                const setDiv = document.createElement('div');
+                setDiv.className = 'Set';
+                setDiv.innerHTML = `
+                    <h2>1</h2>
+                    <div><input type="text" class="kaal_input" name="kaal"></div>
+                    <div><input type="text" class="kor_input" name="kordused"></div>
+                `;
+                mainDiv.appendChild(setDiv);
+
+                // Lisa Set nupp
+                const addSetBtn = document.createElement('button');
+                addSetBtn.type = 'button';
+                addSetBtn.className = 'lis_set';
+                addSetBtn.textContent = '+ Lisa Set';
+                addSetBtn.onclick = function() { addSet(this); };
+                mainDiv.appendChild(addSetBtn);
+
+                // lisa uus harjutus enne “+ Lisa Harjutus” nuppu
+                const addExerciseBtn = document.querySelector('.lisa_harjutus');
+                form.insertBefore(mainDiv, addExerciseBtn.parentElement);
+            }
+
+            // Väljundinimede indekseerimine
+            function prepareFormFieldsForSave() {
+                const mains = document.querySelectorAll('.main');
+                mains.forEach((mainDiv, i) => {
+                    const exerciseIndex = i + 1;
+
+                    // Harjutuse nime input
+                    const nameInput = mainDiv.querySelector('.harjutus_nimi input');
+                    if (nameInput) {
+                        nameInput.name = `harjutuse_nimi_${exerciseIndex}`;
+                    }
+
+                    // Kõik Set plokid harjutuse sees
+                    const setDivs = mainDiv.querySelectorAll('.Set');
+                    setDivs.forEach((setDiv, j) => {
+                        const setIndex = j + 1;
+                        const kaalInput = setDiv.querySelector('.kaal_input');
+                        const korInput = setDiv.querySelector('.kor_input');
+                        if (kaalInput) {
+                            kaalInput.name = `kaal_${exerciseIndex}_${setIndex}`;
+                        }
+                        if (korInput) {
+                            korInput.name = `kordused_${exerciseIndex}_${setIndex}`;
+                        }
+                    });
+                });
+            }
+
+            // STOP nupp klikitakse, indekseerime ja saatmine
+            document.addEventListener('DOMContentLoaded', function() {
+                const stopBtn = document.querySelector('.stop');
+                if (stopBtn) {
+                    stopBtn.addEventListener('click', function(event) {
+                        // valmistame väljad ette
+                        prepareFormFieldsForSave();
+
+                        // nüüd saab vormi tavapäraselt esitada (form.submit())
+                        const form = document.querySelector('form');
+                        if (form) {
+                            form.submit();
+                        }
+                    });
+                }
+            });
+        </script>
+
+
+    </body>
+</html>
