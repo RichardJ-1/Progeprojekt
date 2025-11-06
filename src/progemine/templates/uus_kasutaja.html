@@ -3,9 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tee uus kasutaja</title>
+    <title>Logi Sisse</title>
+    <style>
+      h2 {
+        font-size: 60px;
+      }
+      .main{
+        width: 80%;
+        max-width: 800px;
+        margin: 0 auto;
+        margin-top: 200px;
+        padding-top: 20px;
+      }
+
+      .login{
+        margin-left: 25%;
+      }
+
+      .k_andmed{
+        margin-left: 32%;
+      }
+
+      .uusacc_submit{
+        padding-top: 15px;
+        display: flex;
+        align-items: center;
+        margin-left: 20%;
+      }
+
+      .uus_k{
+        padding-top: 10px;
+        display: flex;
+        align-items: center;
+        margin-left: 20%;
+      }
+
+      .submit_s{
+        height: 35px;
+        width: 400px;
+ 
+      }
+    </style>
 </head>
 <body>
-    
+    <div class="main">
+      <div class="login">
+        <h2>Gym app</h2>
+      </div>
+
+
+      <form method="POST" action="/">
+        <div class="k_andmed">
+          <label for="nimi">Kasutajanimi:</label><br>
+          <input type="text" name="nimi"><br>
+          <label for="nimi">Sisesta nimi uuesti:</label><br>
+          <input type="text" name="nimi"><br>
+          <label for="parool">Parool:</label><br>
+          <input type="text" name="parool"><br><br>
+        </div>
+        <div class="uusacc_submit">  
+          <input type="submit" name = "logi_sisse_nupp" value="Loo kasutaja" class="submit_s">
+        </div>
+      </form> 
+      
+      
+    </body>
 </body>
 </html>
