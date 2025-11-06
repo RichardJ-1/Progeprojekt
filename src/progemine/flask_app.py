@@ -2,18 +2,18 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
+users = {"admin": "password"}
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == "POST":
         if request.form["logi_sisse_nupp"] == "Logi sisse":
-            try:
-                #teen sõnastiku abil siia töötava logini
-                #praegu lihtsalt viib local kasutaja treeningplaani
-                kasutajanimi = request.form["nimi"]
-                parool = request.form["parool"]
-                return render_template('trennileht.html')
-            except:
-                return render_template('login_ekraan.html')
+            kasutajanimi = request.form["nimi"]
+            parool = request.form["parool"]
+            if kasutajanimi in users and users[kasutajanimi] == parool:
+                return render_template('trennileht.html')  # Redirect to the training page
+            else:
+                return render_template('login_ekraan.html', error="Kasutajanimi või parool on valed")
             
         elif request.form["uus_kasutaja_nupp"] == "Uus kasutaja":
             return render_template('uus_kasutaja.html')
