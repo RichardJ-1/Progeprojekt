@@ -5,72 +5,115 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logi Sisse</title>
     <style>
-      h2 {
-        font-size: 60px;
-      }
-      .main{
-        width: 80%;
-        max-width: 800px;
-        margin: 0 auto;
-        margin-top: 200px;
-        padding-top: 20px;
-      }
+        /* General reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-      .login{
-        margin-left: 25%;
-      }
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f2f2f2;
+        }
 
-      .k_andmed{
-        margin-left: 32%;
-      }
+        .main {
+            width: 400px;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-      .log_submit{
-        padding-top: 15px;
-        display: flex;
-        align-items: center;
-        margin-left: 20%;
-      }
+        h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #333;
+        }
 
-      .uus_k{
-        padding-top: 10px;
-        display: flex;
-        align-items: center;
-        margin-left: 20%;
-      }
+        label {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 5px;
+        }
 
-      .submit_s{
-        height: 35px;
-        width: 400px;
- 
-      }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        input[type="text"]:focus, input[type="password"]:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+
+        .submit_s {
+            width: 100%;
+            padding: 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit_s:hover {
+            background-color: #0056b3;
+        }
+
+        .log_submit, .uus_k {
+            width: 100%;
+            text-align: center;
+        }
+
+        .log_submit {
+            margin-top: 20px;
+            min-width: 300px;
+        }
+
+        .uus_k {
+            margin-top: 10px;
+            min-width: 320px;
+        }
     </style>
 </head>
 <body>
     <div class="main">
-      <div class="login">
-        <h2>Gym app</h2>
-      </div>
+        <h2>Gym App</h2>
 
+        <form method="POST" action="/">
+            <div>
+                <label for="nimi">Kasutajanimi:</label>
+                <input type="text" name="nimi" id="nimi" required>
 
-      <form method="POST" action="/">
-        <div class="k_andmed">
-          <label for="nimi">Kasutajanimi:</label><br>
-          <input type="text" name="nimi"><br>
-          <label for="parool">Parool:</label><br>
-          <input type="text" name="parool"><br><br>
-        </div>
-        <div class="log_submit">  
-          <input type="submit" name = "logi_sisse_nupp" value="Logi sisse" class="submit_s">
-        </div>
-      </form> 
-      
-      
-      <form method="POST" action="/">
-        <div class="uus_k">
-          <input type="submit" name="uus_kasutaja_nupp" value="Uus kasutaja" class="submit_s">
-        </div>
-      </form> 
-    </body>
+                <label for="parool">Parool:</label>
+                <input type="password" name="parool" id="parool" required>
+            </div>
 
+            <div class="log_submit">
+                <input type="submit" name="logi_sisse_nupp" value="Logi sisse" class="submit_s">
+            </div>
+        </form>
+
+        <form method="POST" action="/">
+            <div class="uus_k">
+                <input type="submit" name="uus_kasutaja_nupp" value="Uus kasutaja" class="submit_s">
+            </div>
+        </form>
+    </div>
 </body>
 </html>
