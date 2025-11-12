@@ -3,7 +3,6 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-# Lihtne kasutajaandmebaas
 users = {"admin": "password"}
 
 @app.route("/", methods=["GET", "POST"])
@@ -12,7 +11,6 @@ def index():
         if request.method == "POST":
             form_keys = request.form.keys()
 
-            # Kui logimisvorm
             if "logi_sisse_nupp" in form_keys:
                 kasutajanimi = request.form.get("nimi", "")
                 parool = request.form.get("parool", "")
@@ -22,23 +20,23 @@ def index():
                 else:
                     return render_template("login_ekraan.html", error="Kasutajanimi või parool on valed")
 
-            # Kui uue kasutaja loomine
+            # uue kasutaja loomine
             elif "uus_kasutaja_nupp" in form_keys:
                 return render_template("uus_kasutaja.html")
 
-            # Kui treeningu lõpetamine (STOP nupp)
+            # treeningu lõpetamine
             else:
                 harjutused = {}
                 kordused_kokku = 0
                 seeriad_kokku = 0
 
-                # Leia kõik harjutuste nimed
+                # harjutuste nimed
                 for key, value in request.form.items():
                     if key.startswith("harjutuse_nimi_"):
                         idx = key.split("_")[-1]
                         harjutused[idx] = {"nimi": value, "seeriad": 0, "kordused": 0}
 
-                # Leia kõik seeriad ja kordused
+                # seeriad ja kordused
                 for key, value in request.form.items():
                     if key.startswith("kordused_"):
                         parts = key.split("_")
@@ -53,7 +51,7 @@ def index():
 
                 skoor = kordused_kokku + seeriad_kokku
 
-                # Salvesta faili
+                # Salvestamine
                 salvestus_aeg = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 with open("tulemus.txt", "a", encoding="utf-8") as f:
                     f.write(f"--- TREENINGU TULEMUS ---\n")
@@ -72,7 +70,6 @@ def index():
                     skoor=skoor
                 )
 
-        # Kui GET (tavaline avamine)
         return render_template("login_ekraan.html")
 
     except Exception as e:
